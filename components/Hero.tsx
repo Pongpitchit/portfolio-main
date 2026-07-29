@@ -17,6 +17,11 @@ export default function Hero({ name, title, subtitle, onStart }: HeroProps) {
     return () => clearTimeout(t)
   }, [])
 
+  useEffect(() => {
+    const t = setTimeout(() => onStart(), 3000)
+    return () => clearTimeout(t)
+  }, [onStart])
+
   const initials = name
     .split(' ')
     .map(w => w[0])
@@ -108,13 +113,6 @@ export default function Hero({ name, title, subtitle, onStart }: HeroProps) {
           className={`mt-12 flex flex-col items-center gap-3 transition-all duration-700 ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
           style={{ transitionDelay: '0.5s' }}
         >
-          <button
-            onClick={onStart}
-            className="font-sans text-sm font-semibold tracking-[0.2em] uppercase transition-all duration-200 hover:tracking-[0.35em]"
-            style={{ color: 'var(--text)', background: 'none', border: 'none', cursor: 'pointer' }}
-          >
-            START
-          </button>
           <div className="section-line w-24" />
           <button className="font-sans text-xs tracking-[0.15em] uppercase" style={{ color: 'var(--text-muted)', background: 'none', border: 'none', cursor: 'pointer' }}>
             {/* OPTIONS */}
