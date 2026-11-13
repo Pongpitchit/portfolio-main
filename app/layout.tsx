@@ -4,7 +4,7 @@ import './globals.css'
 
 export const metadata: Metadata = {
   title: 'Profile | Pongpitchit.ps',
-  description: 'Content Creator · Graphic Design · Video · Typography',
+  description: 'Pongpitchit Sittipakdee — Full-Stack Developer from Thailand. Projects in Next.js, React, Node.js, Docker, Python and IoT.',
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

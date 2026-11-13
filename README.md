@@ -1,4 +1,8 @@
-# Yudha Pradana — Portfolio 2025
+# Pongpitchit Sittipakdee — Portfolio
+
+Personal portfolio of Pongpitchit Sittipakdee, Full-Stack Developer (Rangsit University, DIT).
+
+Live: [pongpitchit.in.th](https://pongpitchit.in.th)
 
 A minimal dark/light portfolio built with **Next.js 14 · TypeScript · Tailwind CSS**.
 
@@ -7,7 +11,7 @@ A minimal dark/light portfolio built with **Next.js 14 · TypeScript · Tailwind
 - **Language**: TypeScript
 - **Styling**: Tailwind CSS + CSS custom properties (theme vars)
 - **Fonts**: Bebas Neue (display) · Syne (sans) · DM Mono (mono)
-- **Data**: `src/data/portfolio.json` — edit this file to update all content
+- **Data**: `lib/portfolio-data.ts` — edit this file to update all content
 
 ## Getting Started
 
@@ -24,52 +28,39 @@ npm run dev
 ## Project Structure
 
 ```
-src/
-  app/
-    layout.tsx        — Root layout with ThemeProvider
-    page.tsx          — Main page orchestrator
-    globals.css       — Theme variables + animations
-  components/
-    Navbar.tsx        — Top nav with theme toggle
-    Hero.tsx          — Landing / boot screen
-    ProfileSection.tsx — About, skills, education
-    ProjectSection.tsx — Project grid with category filter
-    ContactSection.tsx — Socials + thank you screen
-    Marquee.tsx       — Scrolling skills ticker
-  data/
-    portfolio.json    — ALL content lives here (edit freely)
-  hooks/
-    useTheme.tsx      — Dark/Light theme context
-  types/
-    index.ts          — TypeScript interfaces
+app/
+  layout.tsx          — Root layout, metadata, ThemeProvider
+  page.tsx            — Main page orchestrator (section switching)
+  globals.css         — Theme variables + animations
+components/
+  Navbar.tsx          — Top nav with theme toggle
+  Hero.tsx            — Landing / boot screen
+  ProfileSection.tsx  — About, services, tech stack, education
+  ProjectSection.tsx  — Project grid with category filter
+  ProjectModal.tsx    — Project detail modal
+  ResumeModal.tsx     — Resume preview / download (public/resume.pdf)
+  ContactSection.tsx  — Socials + thank you screen
+  Marquee.tsx         — Scrolling skills ticker
+hooks/
+  useTheme.tsx        — Dark/Light theme context
+lib/
+  portfolio-data.ts   — ALL content lives here (edit freely)
+types/
+  index.ts            — Type re-exports
+public/               — Project screenshots, logos, resume.pdf
 ```
 
 ## Theme System
 
-Toggle between **Dark Minimal** and **Light Minimal** themes via the top-right button.
+Toggle between **Dark** and **Light** themes via the top-right button.
+Theme is persisted in `localStorage`; colors are CSS custom properties in `app/globals.css`.
 
-Theme is persisted in `localStorage`. CSS custom properties in `globals.css`:
+## Adding a Project
 
-```css
-[data-theme='dark']  { --bg: #0a0a0a; --text: #f0f0f0; ... }
-[data-theme='light'] { --bg: #f7f7f5; --text: #0f0f0f; ... }
-```
-
-## Customizing Data
-
-Edit `src/data/portfolio.json` to update:
-- Profile info (name, bio, stats, socials)
-- Software skills & language proficiency
-- Education & experience
-- Projects (title, category, description, tags, author)
-
-## Adding Real Images
-
-Replace gradient placeholders by adding actual images to `/public/projects/`:
-```json
-{ "cover": "/projects/your-image.jpg" }
-```
-Then update `ProjectSection.tsx` to use `<Image>` from `next/image`.
+1. Put a screenshot in `public/` (e.g. `public/my-project.png`)
+2. Add an entry at the **end** of `portfolioData.projects` in `lib/portfolio-data.ts`
+   (use `'#'` for `liveUrl` / `githubUrl` to hide the button)
+3. The last entry is always shown first, as the large featured card
 
 ## Build for Production
 

@@ -26,9 +26,12 @@ export default function ProjectSection({ projects }: ProjectSectionProps) {
     setSelectedProject(null)
   }
 
+  // Data is stored oldest → newest; show newest first so the latest project is the featured card
+  const newestFirst = [...projects].reverse()
+
   const filtered = activeCategory === 'all'
-    ? projects
-    : projects.filter(p => p.category === activeCategory)
+    ? newestFirst
+    : newestFirst.filter(p => p.category === activeCategory)
 
   const hero = filtered[0] ?? null
   const rest = filtered.slice(1)
